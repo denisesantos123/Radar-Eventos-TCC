@@ -2,63 +2,128 @@
 
 use Illuminate\Support\Facades\Route;
 
+/*
+|--------------------------------------------------------------------------
+| API Routes - Radar Eventos
+|--------------------------------------------------------------------------
+|
+| Aqui são definidas as rotas da API do aplicativo Radar Eventos.
+| Todas as respostas são retornadas em formato JSON didático.
+|
+*/
+
+// Rota de Status da API
 Route::get('/status', function () {
     return response()->json([
         'status' => 'online',
-        'servico' => 'API do TCC',
+        'app' => 'Radar App API',
         'versao' => '1.0.0',
+        'mensagem' => 'Conexão estabelecida com sucesso. Pronto para buscar e divulgar eventos!',
+        'tema' => [
+            'nome' => 'Radar Eventos',
+            'cores_principais' => ['Azul', 'Branco']
+        ]
     ]);
 });
 
-Route::get('/projetos', function () {
+// Rota para listar todos os eventos (Radar)
+Route::get('/eventos', function () {
     return response()->json([
         [
             'id' => 1,
-            'titulo' => 'Plataforma de Acompanhamento de TCC',
-            'area' => 'Educacao',
-            'status' => 'em_desenvolvimento',
+            'titulo' => 'Festival de Música Blue Wave',
+            'descricao' => 'O maior festival de música indie à beira-mar, com palcos iluminados em tons de azul e branco.',
+            'data' => '2026-07-15',
+            'horario' => '18:00',
+            'local' => 'Arena da Praia, Florianópolis - SC',
+            'categoria' => 'Música',
+            'imagem_url' => 'https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=600',
+            'destaque' => true,
         ],
         [
             'id' => 2,
-            'titulo' => 'Painel de Indicadores de Orientacao',
-            'area' => 'Gestao Academica',
-            'status' => 'planejado',
+            'titulo' => 'Maratona Noturna Radar 10K',
+            'descricao' => 'Corrida urbana noturna com direito a kit atleta especial nas cores azul e branco.',
+            'data' => '2026-08-20',
+            'horario' => '20:00',
+            'local' => 'Av. Beira Mar Norte, Florianópolis - SC',
+            'categoria' => 'Esportes',
+            'imagem_url' => 'https://images.unsplash.com/photo-1502224562085-639556652f33?q=80&w=600',
+            'destaque' => true,
         ],
+        [
+            'id' => 3,
+            'titulo' => 'Workshop de UI/UX - Design Limpo e Moderno',
+            'descricao' => 'Aprenda a criar interfaces elegantes com foco na paleta minimalista azul e branca.',
+            'data' => '2026-09-05',
+            'horario' => '14:00',
+            'local' => 'Centro de Inovação Alpha, Florianópolis - SC',
+            'categoria' => 'Tecnologia',
+            'imagem_url' => 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=600',
+            'destaque' => false,
+        ]
     ]);
 });
 
-Route::get('/orientadores', function () {
+// Rota para listar as categorias dos eventos
+Route::get('/categorias', function () {
     return response()->json([
         [
             'id' => 1,
-            'nome' => 'Prof. Ana Beatriz',
-            'especialidade' => 'Engenharia de Software',
-            'vagas_disponiveis' => 3,
+            'nome' => 'Música',
+            'slug' => 'musica',
+            'icone' => 'music-note',
+            'cor_identidade' => '#0056b3'
         ],
         [
             'id' => 2,
-            'nome' => 'Prof. Carlos Menezes',
-            'especialidade' => 'Ciencia de Dados',
-            'vagas_disponiveis' => 2,
+            'nome' => 'Esportes',
+            'slug' => 'esportes',
+            'icone' => 'run',
+            'cor_identidade' => '#00bfff'
         ],
+        [
+            'id' => 3,
+            'nome' => 'Tecnologia',
+            'slug' => 'tecnologia',
+            'icone' => 'laptop',
+            'cor_identidade' => '#1e90ff'
+        ],
+        [
+            'id' => 4,
+            'nome' => 'Gastronomia',
+            'slug' => 'gastronomia',
+            'icone' => 'food-fork-drink',
+            'cor_identidade' => '#002f6c'
+        ]
     ]);
 });
 
-Route::get('/entregas', function () {
+// Rota para obter os eventos em destaque (Home do App)
+Route::get('/eventos/destaques', function () {
     return response()->json([
         [
             'id' => 1,
-            'projeto_id' => 1,
-            'etapa' => 'Tema e problema',
-            'prazo' => '2026-06-15',
-            'status' => 'entregue',
+            'titulo' => 'Festival de Música Blue Wave',
+            'descricao' => 'O maior festival de música indie à beira-mar, com palcos iluminados em tons de azul e branco.',
+            'data' => '2026-07-15',
+            'horario' => '18:00',
+            'local' => 'Arena da Praia, Florianópolis - SC',
+            'categoria' => 'Música',
+            'imagem_url' => 'https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=600',
+            'destaque' => true,
         ],
         [
             'id' => 2,
-            'projeto_id' => 1,
-            'etapa' => 'Prototipo inicial',
-            'prazo' => '2026-07-10',
-            'status' => 'pendente',
-        ],
+            'titulo' => 'Maratona Noturna Radar 10K',
+            'descricao' => 'Corrida urbana noturna com direito a kit atleta especial nas cores azul e branco.',
+            'data' => '2026-08-20',
+            'horario' => '20:00',
+            'local' => 'Av. Beira Mar Norte, Florianópolis - SC',
+            'categoria' => 'Esportes',
+            'imagem_url' => 'https://images.unsplash.com/photo-1502224562085-639556652f33?q=80&w=600',
+            'destaque' => true,
+        ]
     ]);
 });
+
