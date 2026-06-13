@@ -127,3 +127,41 @@ Route::get('/eventos/destaques', function () {
     ]);
 });
 
+// Rota de Recurso 1 (Eventos) - Para atender à especificação do TCC
+Route::get('/recurso1', function () {
+    return response()->json([
+        'recurso' => 'eventos',
+        'descricao' => 'Este endpoint representa o Recurso 1 da API (Listagem de Eventos para o Radar).',
+        'status' => 'sucesso',
+        'dados' => [
+            [
+                'id' => 1,
+                'titulo' => 'Festival de Música Blue Wave',
+                'categoria' => 'Música',
+                'data' => '2026-07-15',
+                'local' => 'Florianópolis - SC'
+            ],
+            [
+                'id' => 2,
+                'titulo' => 'Maratona Noturna Radar 10K',
+                'categoria' => 'Esportes',
+                'data' => '2026-08-20',
+                'local' => 'Florianópolis - SC'
+            ]
+        ]
+    ]);
+});
+
+// Rota de Recurso 2 (Categorias) - Para atender à especificação do TCC
+Route::get('/recurso2', function () {
+    return response()->json([
+        'recurso' => 'categorias',
+        'descricao' => 'Este endpoint representa o Recurso 2 da API (Categorias de Eventos).',
+        'status' => 'sucesso',
+        'dados' => [
+            ['id' => 1, 'nome' => 'Música', 'slug' => 'musica'],
+            ['id' => 2, 'nome' => 'Esportes', 'slug' => 'esportes'],
+            ['id' => 3, 'nome' => 'Tecnologia', 'slug' => 'tecnologia']
+        ]
+    ]);
+});
